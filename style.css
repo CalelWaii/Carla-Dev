@@ -1,29 +1,98 @@
 @import url(https://use.fontawesome.com/releases/v6.4.2/css/all.cs);
-/* a{
-    margin:0 10px;
-    border-radius: 50%;
-    box-sizing: border-box;
-    background:#fff ;
-    width: 100px;
-    height: 100px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    text-decoration: none;
-    transition: 0.5s;
-    background: rgba(0, 0, 0, 0);
-    color:var(--color);
-    font-size: 2.5rem;
-    -webkit-box-reflect:below 5px linear-gradient(to bottom,rgba(0, 0, 0, 0),rgba(0, 0, 0, 4)) ;
+.timeline {
+  position: relative;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 60px 0;
 }
-a.hover{
-    background: var(--color);
-    color: #050801;
-    box-shadow: 0 0 5px var(--color),
-    0 0 25px var(--color),
-    0 0 50px var(--color),
-    0 0 200px var(--color);
-} */
+
+.timeline::after {
+  content: '';
+  position: absolute;
+  width: 4px;
+  background: orange;
+  top: 0;
+  bottom: 0;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.timeline-item {
+  padding: 20px 30px;
+  position: relative;
+  width: 50%;
+  text-align: left;
+  box-sizing: border-box;
+}
+
+.timeline-item:nth-child(odd) {
+  left: 0;
+}
+
+.timeline-item:nth-child(even) {
+  left: 50%;
+}
+
+.timeline-content {
+  background-color: #1c1c1c;
+  border: 2px solid orange;
+  padding: 20px;
+  border-radius: 10px;
+  position: relative;
+  box-shadow: 0 0 15px rgba(255, 165, 0, 0.3);
+}
+
+.timeline-item::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  width: 20px;
+  height: 20px;
+  background: orange;
+  border-radius: 50%;
+  border: 3px solid #0a0a0a;
+  z-index: 1;
+}
+
+.timeline-item:nth-child(odd)::before {
+  right: -10px;
+}
+
+.timeline-item:nth-child(even)::before {
+  left: -10px;
+}
+
+.timeline-content h3 {
+  font-size: 20px;
+  color: orange;
+  margin-top: 0;
+}
+
+.timeline-content p {
+  font-size: 16px;
+  color: #ccc;
+  margin: 10px 0;
+}
+
+.timeline-content .tecnologias {
+  margin-top: 10px;
+  justify-content: flex-start;
+}
+
+@media screen and (max-width: 768px) {
+  .timeline::after {
+    left: 20px;
+  }
+  .timeline-item {
+    width: 100%;
+    padding-left: 60px;
+    padding-right: 25px;
+  }
+  .timeline-item::before {
+    left: 20px;
+  }
+}
+
 body {
   margin: 0;
   padding: 0;
@@ -40,7 +109,7 @@ body {
 }
 
 .dev-label {
-  font-size: 20px;
+  font-size: 30px;
   color: orange;
 }
 
@@ -158,31 +227,7 @@ h1.title-line {
   gap: 30px;
 }
 
-.proyecto-card {
-  background-color: #1c1c1c;
-  border: 2px solid orange;
-  padding: 20px;
-  max-width: 300px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(255, 165, 0, 0.3);
-  transition: transform 0.3s ease;
-}
 
-.proyecto-card:hover {
-  transform: scale(1.05);
-}
-
-.proyecto-card h3 {
-  font-size: 20px;
-  color: #fff;
-  margin-bottom: 10px;
-}
-
-.proyecto-card p {
-  font-size: 14px;
-  color: #ccc;
-  margin-bottom: 15px;
-}
 
 .botones {
   display: flex;
@@ -190,18 +235,7 @@ h1.title-line {
   gap: 10px;
 }
 
-.proyecto-card .btn {
-  border: 1px solid orange;
-  padding: 5px 10px;
-  color: orange;
-  text-decoration: none;
-  font-size: 12px;
-}
 
-.proyecto-card .btn:hover {
-  background-color: orange;
-  color: #000;
-}
 .tecnologias {
   display: flex;
   justify-content: center;
@@ -220,6 +254,154 @@ h1.title-line {
   transform: scale(1.2);
 }
 
+.typewriter {
+  overflow: hidden;
+  border-right: 0.15em solid orange;
+  white-space: nowrap;
+  width: 0;
+  animation: typing 3s steps(40, end) forwards, blink-caret 0.75s step-end infinite;
+}
+.tecnologias img {
+  width: 32px;
+  transition: transform 0.3s ease, filter 0.3s ease;
+  filter: grayscale(100%);
+}
+
+.tecnologias img:hover {
+  transform: scale(1.2) rotate(-5deg);
+  filter: grayscale(0%);
+}
+.floating-symbol {
+  position: absolute;
+  font-size: 20px;
+  color: orange;
+  opacity: 0.3;
+  animation: float 4s infinite alternate ease-in-out;
+}
+#habilidades {
+  padding: 100px 40px;
+  background-color: #0a0a0a;
+  text-align: center;
+}
+
+.skills-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.skill-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  border: 2px solid orange;
+  border-radius: 8px;
+  padding: 15px 10px;
+  background-color: #1c1c1c;
+  width: 100px;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: 0 0 8px rgba(255, 165, 0, 0.2);
+}
+
+.skill-item:hover {
+  transform: translateY(-5px) scale(1.05);
+  box-shadow: 0 0 20px rgba(255, 165, 0, 0.6);
+}
+
+.skill-item img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 8px;
+  filter: grayscale(100%);
+  transition: filter 0.3s ease;
+}
+
+.skill-item:hover img {
+  filter: grayscale(0%);
+}
+
+.skill-item span {
+  color: orange;
+  font-size: 14px;
+}
+
+#minijuego {
+  padding: 100px 40px;
+  background-color: #0a0a0a;
+  text-align: center;
+  position: relative;
+}
+
+#juego-container {
+  position: relative;
+  height: 300px;
+  width: 100%;
+  border: 2px dashed orange;
+  margin: auto;
+  max-width: 600px;
+  overflow: hidden;
+}
+
+#bug {
+  width: 40px;
+  height: 40px;
+  background-color: red;
+  border-radius: 50%;
+  position: absolute;
+  cursor: pointer;
+  transition: top 0.3s, left 0.3s;
+  animation: bounce 1s infinite alternate ease-in-out;
+}
+#buenas-practicas {
+  padding: 80px 40px;
+  background-color: #0a0a0a;
+  text-align: center;
+}
+
+.practicas-list {
+  list-style: none;
+  padding: 0;
+  max-width: 600px;
+  margin: 0 auto;
+  text-align: left;
+  color: #eee;
+  font-size: 16px;
+}
+
+.practicas-list li {
+  margin-bottom: 12px;
+  border-left: 3px solid orange;
+  padding-left: 10px;
+  transition: transform 0.3s ease;
+}
+
+.practicas-list li:hover {
+  transform: translateX(5px);
+  color: orange;
+}
+
+@keyframes bounce {
+  0% { transform: scale(1); }
+  100% { transform: scale(1.2) rotate(5deg); }
+}
+
+#puntos {
+  color: orange;
+  margin-top: 10px;
+  font-size: 20px;
+}
+
+
+@keyframes typing {
+  from { width: 0 }
+  to { width: 100% }
+}
+
+@keyframes blink-caret {
+  50% { border-color: transparent }
+}
 
 @keyframes appear {
   from {
